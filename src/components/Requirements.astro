@@ -1,0 +1,252 @@
+---
+// src/components/Requirements.astro
+---
+
+<section class="py-24 relative z-10">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+      
+      <!-- Левая колонка: Список требований -->
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl mb-8">
+          Базовые требования к донору
+        </h2>
+        
+        <ul class="space-y-4 text-zinc-600 dark:text-zinc-300">
+          <li class="flex items-start gap-3">
+            <span class="mt-1 text-orange-500 dark:text-purple-400">🔹</span>
+            <span><strong>Возраст:</strong> от 18 лет.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 text-orange-500 dark:text-purple-400">🔹</span>
+            <span><strong>Вес и ИМТ:</strong> вес от 50 кг, индекс массы тела от 18,5 до 40.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 text-orange-500 dark:text-purple-400">🔹</span>
+            <span><strong>Температура:</strong> 37°C и ниже.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 text-orange-500 dark:text-purple-400">🔹</span>
+            <span><strong>Пульс:</strong> от 55 до 95 ударов в минуту.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 text-orange-500 dark:text-purple-400">🔹</span>
+            <span><strong>Давление:</strong> 90–149 мм рт. ст. (систолическое), 60–89 мм рт. ст. (диастолическое).</span>
+          </li>
+          <li class="flex items-start gap-3 rounded-xl bg-orange-100/50 p-4 dark:bg-purple-900/20 border border-orange-200 dark:border-purple-800">
+            <span class="text-orange-500 dark:text-purple-400">📍</span>
+            <span class="text-sm">
+              <strong>Прописка:</strong> от полугода (в некоторых регионах — от года) в регионе сдачи. 
+              <br/><em>Важно:</em> В Новокузнецке нет центров крови, принимающих доноров без местной прописки.
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Правая колонка: Карточка с кнопкой для противопоказаний -->
+      <div class="relative flex flex-col items-center justify-center rounded-3xl bg-white dark:bg-zinc-800 p-10 text-center shadow-xl ring-1 ring-zinc-200 dark:ring-zinc-700 overflow-hidden">
+        <!-- Декоративный фон -->
+        <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-linear-to-br from-orange-400/20 to-red-400/20 dark:from-purple-500/20 dark:to-pink-500/20 blur-3xl"></div>
+        
+        <div class="relative z-10">
+          <h3 class="text-2xl font-bold text-zinc-900 dark:text-white">Противопоказания</h3>
+          <p class="mt-4 text-zinc-600 dark:text-zinc-400 mb-8">
+            Существуют абсолютные (постоянные) и временные противопоказания к донорству. Обязательно ознакомьтесь с ними перед визитом в центр крови.
+          </p>
+          <button 
+            id="open-modal-btn"
+            class="rounded-xl bg-zinc-900 px-8 py-4 font-bold text-white shadow-lg transition-transform hover:scale-105 dark:bg-white dark:text-zinc-900"
+          >
+            Проверить список ограничений
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Модальное окно (Попап) -->
+  <div 
+    id="modal-overlay" 
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-zinc-900/60 backdrop-blur-sm opacity-0"
+  >
+    <!-- Само окно -->
+    <div 
+      id="modal-content" 
+      class="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl bg-white dark:bg-zinc-900 p-8 shadow-2xl ring-1 ring-zinc-200 dark:ring-zinc-700 mx-4 translate-y-10"
+    >
+      <!-- Кнопка закрытия (Крестик) -->
+      <button 
+        id="close-modal-btn"
+        class="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full bg-zinc-100 text-zinc-500 hover:bg-zinc-200 hover:text-zinc-900 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:hover:text-white transition-colors"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <h3 class="text-2xl font-bold text-zinc-900 dark:text-white mb-6 pr-12">
+        Абсолютные и временные противопоказания
+      </h3>
+      
+      <!-- Сюда мы вставим твой текст -->
+      <!-- Сюда мы вставим твой текст -->
+      <div id="contraindications-list" class="space-y-6">
+        
+        <!-- 1. Временные противопоказания (Самое частое) -->
+        <div class="rounded-2xl border border-orange-200 bg-orange-50/50 p-6 dark:border-orange-900/30 dark:bg-orange-900/10">
+          <h4 class="flex items-center gap-3 text-lg font-bold text-orange-600 dark:text-orange-400">
+            <span class="text-2xl">⏳</span> Временные ограничения
+          </h4>
+          <p class="mb-5 mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            Нужно просто подождать. Срок отсчитывается с момента выздоровления или окончания процедуры.
+          </p>
+          
+          <!-- Главные сроки -->
+          <ul class="mb-6 space-y-3 text-sm font-medium text-zinc-800 dark:text-zinc-200">
+            <li class="flex items-center justify-between border-b border-orange-200/50 pb-2 dark:border-orange-800/30">
+              <span>Татуировки, пирсинг, иглоукалывание</span>
+              <span class="rounded-md bg-orange-100 px-2 py-1 text-xs font-bold text-orange-700 dark:bg-orange-900/50 dark:text-orange-300">120 дней</span>
+            </li>
+            <li class="flex items-center justify-between border-b border-orange-200/50 pb-2 dark:border-orange-800/30">
+              <span>ОРВИ, ангина, грипп</span>
+              <span class="rounded-md bg-orange-100 px-2 py-1 text-xs font-bold text-orange-700 dark:bg-orange-900/50 dark:text-orange-300">30 дней</span>
+            </li>
+            <li class="flex items-center justify-between border-b border-orange-200/50 pb-2 dark:border-orange-800/30">
+              <span>Прием антибиотиков</span>
+              <span class="rounded-md bg-orange-100 px-2 py-1 text-xs font-bold text-orange-700 dark:bg-orange-900/50 dark:text-orange-300">14 дней</span>
+            </li>
+            <li class="flex items-center justify-between border-b border-orange-200/50 pb-2 dark:border-orange-800/30">
+              <span>Обезболивающие (анальгетики, аспирин)</span>
+              <span class="rounded-md bg-orange-100 px-2 py-1 text-xs font-bold text-orange-700 dark:bg-orange-900/50 dark:text-orange-300">3 дня</span>
+            </li>
+            <li class="flex items-center justify-between border-b border-orange-200/50 pb-2 dark:border-orange-800/30">
+              <span>Прием алкоголя</span>
+              <span class="rounded-md bg-orange-100 px-2 py-1 text-xs font-bold text-orange-700 dark:bg-orange-900/50 dark:text-orange-300">48 часов</span>
+            </li>
+            <li class="flex items-center justify-between border-b border-orange-200/50 pb-2 dark:border-orange-800/30">
+              <span>Беременность и роды</span>
+              <span class="rounded-md bg-orange-100 px-2 py-1 text-xs font-bold text-orange-700 dark:bg-orange-900/50 dark:text-orange-300">1 год</span>
+            </li>
+          </ul>
+
+          <!-- Спойлер со всеми подробностями -->
+          <details class="group cursor-pointer">
+            <summary class="text-sm font-bold text-orange-500 transition-colors hover:text-orange-600 dark:text-orange-400 outline-none">
+              Раскрыть полный список временных отводов (вакцины, контакты и др.)
+            </summary>
+            <div class="mt-4 space-y-2 text-xs text-zinc-600 dark:text-zinc-400">
+              <p>• <strong>Операции (в т.ч. прерывание беременности):</strong> 120 дней.</p>
+              <p>• <strong>Контакт с больными гепатитом B/C, сифилисом, ВИЧ:</strong> 120 дней.</p>
+              <p>• <strong>Вакцинация:</strong> убитые вакцины (грипп, столбняк) — 10 дней; живые вакцины (краснуха, корь) и рекомбинантные (COVID-19, гепатит В) — 30 дней; бешенство — 1 год.</p>
+              <p>• <strong>Аллергия в стадии обострения:</strong> 60 дней после купирования.</p>
+              <p>• <strong>Обострение язвы желудка:</strong> 1 год.</p>
+              <p>• <strong>Малярия в анамнезе:</strong> 3 года.</p>
+              <p>• <strong>Период лактации:</strong> 90 дней после окончания кормления.</p>
+              <p>• <strong>Отклонения показателей крови или переливание:</strong> от 30 до 120 дней.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- 2. Абсолютные противопоказания -->
+        <div class="rounded-2xl border border-red-200 bg-red-50/50 p-6 dark:border-red-900/30 dark:bg-red-900/10">
+          <h4 class="flex items-center gap-3 text-lg font-bold text-red-600 dark:text-red-400">
+            <span class="text-2xl">🚫</span> Абсолютные противопоказания
+          </h4>
+          <p class="mb-4 mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            Пожизненный отвод от донорства независимо от давности заболевания.
+          </p>
+          
+          <!-- Основные категории -->
+          <ul class="mb-4 grid gap-x-4 gap-y-2 text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:grid-cols-2">
+            <li class="flex gap-2"><span>•</span> ВИЧ, сифилис</li>
+            <li class="flex gap-2"><span>•</span> Вирусные гепатиты В и С</li>
+            <li class="flex gap-2"><span>•</span> Туберкулез (все формы)</li>
+            <li class="flex gap-2"><span>•</span> Онкология</li>
+            <li class="flex gap-2"><span>•</span> Болезни крови и ЦНС</li>
+            <li class="flex gap-2"><span>•</span> Инвалидность I-II групп</li>
+          </ul>
+
+          <details class="group cursor-pointer">
+            <summary class="text-sm font-bold text-red-500 transition-colors hover:text-red-600 dark:text-red-400 outline-none">
+              Раскрыть полный список заболеваний
+            </summary>
+            <div class="mt-4 space-y-2 text-xs text-zinc-600 dark:text-zinc-400">
+              <p>• Паразитарные болезни (токсоплазмоз, эхинококкоз и др.).</p>
+              <p>• Тяжелые заболевания сердца (ИБС, порок сердца, миокардит, гипертония II-III ст.).</p>
+              <p>• Болезни дыхания (бронхиальная астма, эмфизема).</p>
+              <p>• Болезни ЖКТ и печени (цирроз, токсические поражения).</p>
+              <p>• Заболевания почек в декомпенсации (мочекаменная болезнь).</p>
+              <p>• Лучевая болезнь, болезни эндокринной системы.</p>
+              <p>• Сильная миопия (6 диоптрий и более), отсутствие слуха/речи/зрения.</p>
+              <p>• Кожные заболевания (псориаз, экзема).</p>
+              <p>• Психические расстройства, наркотическая зависимость.</p>
+              <p>• Операции по удалению органов (желудок, почка, селезенка) и трансплантация.</p>
+            </div>
+          </details>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Логика открытия/закрытия окна с плавной анимацией GSAP -->
+<script>
+  import { gsap } from "gsap";
+
+  const openBtn = document.getElementById("open-modal-btn");
+  const closeBtn = document.getElementById("close-modal-btn");
+  const overlay = document.getElementById("modal-overlay");
+  const modalContent = document.getElementById("modal-content");
+
+  // Функция открытия
+  openBtn?.addEventListener("click", () => {
+    // ПРОВЕРКА НА NULL: Если окна нет, прерываем функцию
+    if (!overlay || !modalContent) return; 
+
+    // Делаем элемент блочным, чтобы его было видно
+    overlay.classList.remove("hidden");
+    overlay.classList.add("flex");
+    
+    // Блокируем скролл основной страницы
+    document.body.style.overflow = "hidden";
+
+    // Анимируем появление
+    gsap.to(overlay, { opacity: 1, duration: 0.3, ease: "power2.out" });
+    gsap.to(modalContent, { y: 0, duration: 0.4, ease: "back.out(1.2)" });
+  });
+
+  // Функция закрытия
+  const closeModal = () => {
+    // ПРОВЕРКА НА NULL
+    if (!overlay || !modalContent) return;
+
+    // Возвращаем скролл
+    document.body.style.overflow = "";
+
+    // Анимируем исчезновение
+    gsap.to(modalContent, { y: 20, duration: 0.3, ease: "power2.in" });
+    gsap.to(overlay, { 
+      opacity: 0, 
+      duration: 0.3, 
+      ease: "power2.in", 
+      onComplete: () => {
+        // Прячем элемент только после завершения анимации
+        overlay.classList.add("hidden");
+        overlay.classList.remove("flex");
+      }
+    });
+  };
+
+  closeBtn?.addEventListener("click", closeModal);
+  
+  // Закрытие по клику на темный фон вне окна
+  overlay?.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      closeModal();
+    }
+  });
+</script>

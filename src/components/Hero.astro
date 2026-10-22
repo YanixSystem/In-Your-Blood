@@ -1,0 +1,40 @@
+---
+// Здесь (между тире) можно писать серверный JavaScript, если нужно.
+// Пока оставим пустым.
+---
+
+<!-- Секция реагирует на смену темы: bg-orange-50 для светлой, dark:bg-zinc-950 для темной -->
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden">
+  
+  <!-- Органичная пульсирующая волна -->
+  <!-- В светлой теме: оранжево-персиковый (orange-400/amber-300), в темной: розово-фиолетовый (purple-500/pink-500) -->
+  <div 
+    id="blood-wave" 
+    class="absolute h-120 w-120 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] bg-linear-to-r from-orange-400 to-amber-300 opacity-60 blur-3xl dark:from-purple-500 dark:to-pink-500"
+  ></div>
+
+  <!-- Контент -->
+  <div class="z-10 text-center">
+    <h1 class="text-6xl font-black uppercase tracking-tight md:text-8xl">
+      В твоей <span class="text-transparent bg-clip-text bg-linear-to-r from-orange-500 to-red-500 dark:from-purple-400 dark:to-pink-400">крови</span>
+    </h1>
+    <p class="mt-6 text-xl font-medium text-zinc-600 dark:text-zinc-300">
+      Отделяем мифы от фактов.
+    </p>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  // Анимация пульсации: меняем масштаб, вращаем и плавно искажаем края
+  gsap.to("#blood-wave", {
+    rotation: 360,
+    scale: 1.1,
+    borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%", // Капля плавно меняет форму
+    duration: 10,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut"
+  });
+</script>

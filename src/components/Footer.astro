@@ -1,0 +1,61 @@
+---
+// src/components/Footer.astro
+---
+
+<footer class="bg-zinc-900 py-12 text-zinc-400 dark:bg-black mt-12">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      
+      <!-- Блок 1: О проекте -->
+      <div>
+        <h3 class="text-xl font-black text-white uppercase tracking-wider mb-4">
+          В твоей <span class="text-orange-500 dark:text-purple-400">крови</span>
+        </h3>
+        <p class="text-sm leading-relaxed mb-6">
+          Социальный проект по информированию студентов о донорстве. Отделяем мифы от фактов, помогаем сделать первый шаг.
+        </p>
+        <p class="text-xs text-zinc-600">
+          © 2026. Создано студентами для студентов.
+        </p>
+      </div>
+
+      <!-- Блок 2: Навигация -->
+      <div>
+        <h4 class="text-white font-bold mb-4">Навигация</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#" class="hover:text-orange-500 dark:hover:text-purple-400 transition-colors">Наверх ↑</a></li>
+          <li><a href="#perks-section" class="hover:text-orange-500 dark:hover:text-purple-400 transition-colors">Льготы и бонусы</a></li>
+          <li><a href="#testimonials-section" class="hover:text-orange-500 dark:hover:text-purple-400 transition-colors">Отзывы доноров</a></li>
+          <li><a href="#contacts-section" class="hover:text-orange-500 dark:hover:text-purple-400 transition-colors">Где сдать кровь?</a></li>
+        </ul>
+      </div>
+
+      <!-- Блок 3: Организаторы -->
+      <div>
+        <h4 class="text-white font-bold mb-4">Организаторы</h4>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="https://www.sibsiu.ru/" target="_blank" class="hover:text-orange-500 dark:hover:text-purple-400 transition-colors">
+              Официальный сайт СибГИУ
+            </a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-orange-500 dark:hover:text-purple-400 transition-colors">
+              Профком студентов СибГИУ
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Дисклеймер мелким шрифтом -->
+    <div class="mt-12 border-t border-zinc-800 pt-8 text-xs text-zinc-500 leading-relaxed">
+      <p>
+        <strong>Медицинский отказ от ответственности:</strong> Информация на сайте носит ознакомительный характер и подготовлена на основе открытых данных Службы крови. Наличие или отсутствие противопоказаний, а также финальный допуск к донации определяет исключительно врач-трансфузиолог в Центре крови после осмотра и сдачи анализов.
+      </p>
+    </div>
+
+  </div>
+</footer>
