@@ -2,15 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
 export default function Checker() {
-  // Возможные шаги: 'start', 'gender', 'age', 'weight', 'absolute', 'temp', 'result'
   const [step, setStep] = useState('start');
-  
-  // Данные для статистики
   const [userData, setUserData] = useState({ gender: '', age: '' });
-  
-  // Результат теста
   const [result, setResult] = useState({ success: false, message: '' });
-  
   const contentRef = useRef(null);
 
   // Анимация при каждом переключении шага
@@ -23,6 +17,20 @@ export default function Checker() {
     }
   }, [step]);
 
+  // Функция для завершения теста (без отправки в БД)
+  const finishTest = (success, message) => {
+    setResult({ success, message });
+    setStep('result');
+    
+    // Просто выводим результат в консоль разработчика для проверки
+    if (userData.age) {
+      console.log("Результат теста:", {
+        gender: userData.gender,
+        age: parseInt(userData.age),
+        can_donate: success
+      });
+    }
+  };
 
   return (
     <section className="py-24 relative z-10 flex justify-center px-6">
